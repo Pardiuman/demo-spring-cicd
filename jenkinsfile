@@ -1,0 +1,8 @@
+pipeline{
+    agent{
+        any
+    }
+    stage("printing"){
+        sh 'echo "hey thi spardium" '
+    }
+}
