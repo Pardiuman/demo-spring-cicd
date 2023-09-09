@@ -6,6 +6,7 @@ pipeline{
                 agent{
                     docker{
                         image 'maven'
+                        args '-v $HOME/.m2:/root/.m2' 
                     }
                 }
                 steps{
@@ -14,6 +15,7 @@ pipeline{
                     
                         withSonarQubeEnv(credentialsId: 'sonarqube-secret') {
                             sh 'mvn clean package sonar:sonar'     
+
                         }
                     }
                 }
