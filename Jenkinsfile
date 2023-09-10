@@ -20,5 +20,10 @@ pipeline{
                     }
                 }
             }
+            stage("quality gate analysis"){
+                script{
+                    waitForQualityGate abortPipeline: false, credentialsId: 'sonarqube-secret'
+                }
+            }
         }
 }
