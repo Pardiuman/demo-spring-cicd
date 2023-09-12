@@ -38,10 +38,10 @@ pipeline{
                         withCredentials([usernameColonPassword(credentialsId: 'docker-nexus', variable: 'docker-nexus')]) {
                             // some block
                             sh '''
-                            docker build -t $REGISTRY/first-ci-cd:${VERSION} .
+                            docker build -t $REGISTRY/first-ci-cd:${BUILD_NUMBER} .
                             docker login -u admin -p 8609 $REGISTRY
-                            docker push $REGISTRY/first-ci-cd:${VERSION}
-                            docker rmi $REGISTRY/first-ci-cd:${VERSION}
+                            docker push $REGISTRY/first-ci-cd:${BUILD_NUMBER}
+                            docker rmi $REGISTRY/first-ci-cd:${BUILD_NUMBER}
                             '''
                         }
                         
