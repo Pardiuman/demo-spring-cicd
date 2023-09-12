@@ -40,7 +40,7 @@ pipeline{
                             sh '''
                             docker build -t $REGISTRY/first-ci-cd:${BUILD_NUMBER} .
                             docker login -u admin -p 8609 $REGISTRY
-                            docker push $REGISTRY/first-ci-cd:${BUILD_NUMBER}
+                            docker push $REGISTRY/new-docker/first-ci-cd:${BUILD_NUMBER}
                             docker rmi $REGISTRY/first-ci-cd:${BUILD_NUMBER}
                             '''
                         }
