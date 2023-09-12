@@ -2,7 +2,7 @@ pipeline{
         agent any
         environment{
             VERSION = "{env.BUILD_ID}"
-            REGISTRY = "54.196.90.15:8083"
+            REGISTRY = "54.161.5.40:8083"
         }
         stages{
             
