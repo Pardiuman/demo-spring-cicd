@@ -2,7 +2,7 @@ pipeline{
         agent any
         environment{
             VERSION = "{env.BUILD_ID}"
-            REGISTRY = "3.91.249.106"
+            REGISTRY = "3.91.249.106:8083"
         }
         stages{
             
@@ -30,7 +30,7 @@ pipeline{
             //             waitForQualityGate abortPipeline: false, credentialsId: 'sonarqube-secret'
             //         }
             //     }
-                
+                // docker tag first-ci-cd:1.0 http://18.234.36.212:8081/first-ci-cd:${VERSION}
             // }
             stage("dockerfile"){
                 steps{
@@ -39,8 +39,8 @@ pipeline{
                             // some block
                             sh '''
                             docker build -t $REGISTRY/first-ci-cd:${VERSION} .
-                            // docker tag first-ci-cd:1.0 http://18.234.36.212:8081/first-ci-cd:${VERSION}
-                            docker login -u admin -p 8609 $REGISTRY:8083
+                            
+                            docker login -u admin -p 8609 $REGISTRY
                             docker push http://3.91.249.106:8083/$REGISTRY/first-ci-cd:${VERSION}
                             '''
                         }
